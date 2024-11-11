@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 :root {
   --background: #ffffff;
@@ -24,4 +26,68 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@keyframes shadowMove {
+  0% {
+    text-shadow: 2px 4px 0px #7ed957;
+  }
+  80% {
+    text-shadow: 5px 4px 0px #7ed957;
+  }
+  100% {
+    text-shadow: 2px 4px 0px #7ed957;
+  }
+}
+
+.text-shadow-lime {
+  animation: shadowMove 6s infinite alternate ease-in-out; 
+}
+
+
+
+/* recettes page */
+.card-container {
+  position: relative;
+  width: 200px; /* 카드의 폭 */
+  height: 256px; /* 카드의 높이 */
+  overflow: hidden; /* 자식 요소가 카드 영역을 넘지 않도록 설정 */
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease; /* 애니메이션 시간과 이징 설정 */
+}
+
+.card-front {
+  background-color: transparent; /* 카드 앞면 색상은 투명 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-back {
+  background-color: #0e523b89; /* 배경색과 투명도 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0; /* 아래에서 올라오도록 설정 */
+  left: 0;
+  right: 0;
+  transform: translateY(100%); /* 아래쪽에 숨겨지도록 설정 */
+  filter: blur(0); /* 기본 blur 없음 */
+  transition: transform 0.5s ease, filter 0.5s ease; /* 애니메이션 시간과 이징 설정 */
+}
+
+.card-container:hover .card-back {
+  transform: translateY(0); /* hover 시 뒷면을 위로 올림 */
+border-radius: 12px;
+  backdrop-filter: blur(2px);
 }
